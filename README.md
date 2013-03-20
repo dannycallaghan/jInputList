@@ -15,3 +15,6 @@ http://dannycallaghan.com/_dump/jInputList/
 
 - Click in the input box, type something and hit enter.
 - Remove it by hitting backspace (twice)
+
+Note:
+This is version 0.1 and is still a little original-client-job-specific.
