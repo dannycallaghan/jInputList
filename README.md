@@ -8,3 +8,10 @@ In the background, these items are added to a hidden input as a comma separated 
 Items that are retrieved from the server and placed in the hidden box will automatically be added to the visible box, as individual items, once jInputList is initialised.
 
 Was asked by a client to create this, and then felt it was handy enough to put on here for anyone.
+
+Will update documentation when I can, but you can see a demo here:
+
+http://dannycallaghan.com/_dump/jInputList/
+
+- Click in the input box, type something and hit enter.
+- Remove it by hitting backspace (twice)
