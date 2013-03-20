@@ -22,6 +22,10 @@
         li.choice {
             height: auto;
         }
+        div#action {
+            clear: left;
+            color: #f00;
+        }
         </style>
     </head>
     <body>
@@ -33,6 +37,7 @@
             </ul>
             <input type="hidden" value="alpha,bravo" />
         </div>
+        <div id="action"></div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="jquery-1.9.1.min.js"><\/script>')</script>
         <script src="jquery.jInputList.js"></script>
@@ -40,10 +45,10 @@
         $( document ).ready( function () {
             $( '.input-list' ).jInputList( {
                 onRemoveItem : function ( obj ) {
-                    console.log( 'you removed an item!')
+                    $( 'div#action' ).text( 'you removed an item!')
                 },
                 onAddItem : function ( obj ) {
-                    console.log( 'you added an item!')
+                    $( 'div#action' ).text( 'you added an item!')
                 }
             } );
         } );
