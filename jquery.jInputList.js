@@ -1,21 +1,10 @@
 /**
  * jInputList
  * @author - Danny Callaghan danny@dannycallaghan.com www.dannycallaghan.com
- * Version: 1.1
+ * Version: 0.1
  * MIT License, https://github.com/harvesthq/chosen/blob/master/LICENSE.md
  */
 
-/*
-Markup:
-<div class="input-list">
-   <ul>
-        <li>
-            <input type="text" value="" />
-        </li>
-    </ul>
-    <input type="hidden" value="" />
-</div>
-*/
 
 ;(function ( $, window, document, undefined ) {
     
