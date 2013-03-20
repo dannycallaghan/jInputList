@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>jInputList</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="jInputList.css">
+        <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #333;
+            font-size: 12px;
+        }
+        input[type="text"] {
+            font-size: 12px;
+        }
+        li {
+            height: 28px;
+        }
+        li.choice {
+            height: auto;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="input-list">
+           <ul>
+                <li>
+                    <input type="text" value="" />
+                </li>
+            </ul>
+            <input type="hidden" value="alpha,bravo" />
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="jquery.jInputList.js"></script>
+        <script>
+        $( document ).ready( function () {
+            $( '.input-list' ).jInputList( {
+                onRemoveItem : function ( obj ) {
+                    console.log( 'you removed an item!')
+                },
+                onAddItem : function ( obj ) {
+                    console.log( 'you added an item!')
+                }
+            } );
+        } );
+        </script>
+    </body>
+</html>
