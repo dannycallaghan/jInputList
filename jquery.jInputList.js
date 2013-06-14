@@ -48,10 +48,9 @@
     }
 
     populateList = function ( val, obj, o ) {
-        var val = val.replace(/\s+/g, ''),
-            values = val.split(',');
+        var values = val.split(',');
         for ( var x = 0, i = values.length; x < i; x = x + 1 ) {
-            addToList( values[ x ], obj, false, o );
+            addToList( $.trim( values[ x ] ), obj, false, o );
         }
         if ( o.onAutoPopulateList ) {
             o.onAutoPopulateList( obj );
