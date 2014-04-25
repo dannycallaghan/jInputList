@@ -71,7 +71,7 @@
                             $( '<span>' ).text( text )
                         )
                         .append(
-                            $( '<i>' ).text( 'x' ).bind( 'click', function ( e ) {
+                            $( '<i>' ).text('').bind( 'click', function ( e ) {
                                 removeItem( $( this ).parents( 'li' ), obj, o );
                             } )
                         );
