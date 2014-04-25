@@ -51,8 +51,14 @@
     font-size: 14px;
     font-style: normal;
 }
+.input-list ul li.choice i:hover:before {
+    color: #c00;
+}
 .input-list ul li.choice.can-delete {
     background-color: #08c;
     color: #fff;
     border: solid 1px #08c;
+}
+.input-list ul li.choice.can-delete i:hover:before {
+    color: #fa0;
 }
