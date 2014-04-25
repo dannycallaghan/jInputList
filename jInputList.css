@@ -1,83 +1,65 @@
 .input-list {
-  background-color: #fff;
-  float: left;
-  width: 200px;
-  min-height: 26px;
-  position: relative;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border: solid 1px #ccc;
-  margin-right: 3px;
+    background-color: #fff;
+    float: left;
+    width: 200px;
+    min-height: 26px;
+    position: relative;
+    border-radius: 2px;
+    background-clip: padding-box;
+    border: solid 1px #ccc;
+    margin-right: 3px;
 }
 .input-list ul {
-  margin: 0;
-  list-style: none;
+    margin: 0;
+    list-style: none;
 }
 .input-list ul li {
-  float: left;
-  list-style: none;
+    float: left;
+    list-style: none;
 }
 .input-list ul li input,
 .input-list ul li input:focus {
-  border: none;
-  background-color: #fff;
-  width: 26px;
-  padding-right: 0;
-  outline: 0;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -o-box-shadow: none;
-  box-shadow: none;
+    border: none;
+    background-color: #fff;
+    width: 26px;
+    padding-right: 0;
+    outline: 0;
+    box-shadow: none;
 }
 .input-list ul li.choice {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  background-color: #e4e4e4;
-  background-color: #e8e8e8;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #e8e8e8));
-  background-image: -webkit-linear-gradient(top, #f4f4f4 0%, #e8e8e8);
-  background-image: -moz-linear-gradient(top, #f4f4f4 0%, #e8e8e8);
-  background-image: -ms-linear-gradient(top, #f4f4f4 0%, #e8e8e8);
-  background-image: -o-linear-gradient(top, #f4f4f4 0%, #e8e8e8);
-  background-image: linear-gradient(to bottom, #f4f4f4 0%, #e8e8e8);
-  color: #333;
-  border: solid 1px #aaa;
-  line-height: 13px;
-  padding: 3px 20px 3px 5px;
-  margin: 3px 0 3px 5px;
-  position: relative;
+    border-radius: 2px;
+    background-clip: padding-box;
+    background-color: #e4e4e4;
+    color: #333;
+    cursor: pointer;
+    border: solid 1px #e4e4e4;
+    line-height: 13px;
+    padding: 3px 20px 3px 5px;
+    margin: 3px 0 3px 5px;
+    position: relative;
 }
 .input-list ul li.choice i {
-  cursor: pointer;
-  display: block;
-  position: absolute;
-  right: 0;
-  text-indent: -9999em;
-  top: 6px;
-  width: 13px;
-  height: 8px;
-  font-size: 1px;
-  background: url("input-list-remove.gif") right center no-repeat;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 2px;
+    width: 13px;
+    height: 8px;
+}
+.input-list ul li.choice i:before {
+    content: '\00d7';
+    font-size: 14px;
+    font-style: normal;
+}
+.input-list ul li.choice i:hover:before {
+    color: #c00;
 }
 .input-list ul li.choice.can-delete {
-  background-color: #05c;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #08c), color-stop(100%, #05c));
-  background-image: -webkit-linear-gradient(top, #08c 0%, #05c);
-  background-image: -moz-linear-gradient(top, #08c 0%, #05c);
-  background-image: -ms-linear-gradient(top, #08c 0%, #05c);
-  background-image: -o-linear-gradient(top, #08c 0%, #05c);
-  background-image: linear-gradient(to bottom, #08c 0%, #05c);
-  color: #fff;
-  border: solid 1px #05c;
+    background-color: #08c;
+    color: #fff;
+    border: solid 1px #08c;
 }
-.input-list ul li.choice.can-delete i {
-  background: url("input-list-delete.gif") right center no-repeat;
+.input-list ul li.choice.can-delete i:hover:before {
+    color: #fa0;
 }
