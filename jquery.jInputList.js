@@ -27,6 +27,8 @@
         var _this   =   $( this.element ),
             o       =   this.options;
 
+        console.log(_this.find('li.choice'));
+
         o.hiddenInput = _this.find( 'input[type=hidden]' );
 
         _this.find( 'input' ).bind( 'keyup keydown', function ( e ) {
@@ -67,18 +69,38 @@
         var choice = $( '<li>' )
                         .addClass( 'choice' )
                         .attr( 'id', '_' + text.toLowerCase() )
-                        .append( 
+                        .attr( 'title', 'Rename' )
+                        .append(
                             $( '<span>' ).text( text )
                         )
                         .append(
-                            $( '<i>' ).text('').bind( 'click', function ( e ) {
-                                removeItem( $( this ).parents( 'li' ), obj, o );
-                            } )
+                            $( '<i>' )
+                                .text('')
+                                .attr('title', 'Remove')
+                                .bind( 'click', function ( e ) {
+                                    removeItem( $( this ).parents( 'li' ), obj, o );
+                                } )
                         );
+
+        // Add click handler.
+        choice.on('click', function() {
+            renameItem(this);
+        });
+
         choice.insertBefore( ul.children().last() );
-        ul.find( 'input').val('').css( 'width', 26 );
+        ul.find('input').val('').css( 'width', 26 );
         if ( add_to_input === true ) {
             addToInput( text, obj, o );
+        }
+    }
+
+    renameItem = function(element) {
+        var name = $(element).find('span');
+        var newName = window.prompt('Rename this option:', name.text());
+
+        if (newName && newName.length > 0) {
+            $(name).text(newName);
+            $(element).attr('id', '_' + newName);
         }
     }
 
