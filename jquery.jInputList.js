@@ -1,13 +1,30 @@
 /**
- * jInputList
- * @author - Danny Callaghan danny@dannycallaghan.com www.dannycallaghan.com
- * Version: 0.1
+ * jInputList - Allows a user to add a number of elements to a (fake) input element. Creates a comma delimited list and adds it to a hidden input.
+ * by Danny Callaghan danny@dannycallaghan.com www.dannycallaghan.com
+ *
+ * Version: 1.1
+ *
+ * Version History:
+ * 1.0 Initial release
+ * 1.1 Added ability to delete an entry with backspace. Reversed order that elements are added to list.
+ *
  * MIT License, https://github.com/harvesthq/chosen/blob/master/LICENSE.md
  */
 
+/*
+ Markup:
+ <div class="input-list">
+ <ul>
+ <li>
+ <input type="text" value="" />
+ </li>
+ </ul>
+ <input type="hidden" value="" />
+ </div>
+ */
 
 ;(function ( $, window, document, undefined ) {
-    
+
     var pluginName  =   'jInputList',
         defaults    =   {
             onRemoveItem : null,
@@ -26,8 +43,6 @@
     Plugin.prototype.init = function () {
         var _this   =   $( this.element ),
             o       =   this.options;
-
-        console.log(_this.find('li.choice'));
 
         o.hiddenInput = _this.find( 'input[type=hidden]' );
 
@@ -52,55 +67,72 @@
     populateList = function ( val, obj, o ) {
         var values = val.split(',');
         for ( var x = 0, i = values.length; x < i; x = x + 1 ) {
-            addToList( $.trim( values[ x ] ), obj, false, o );
+            var value = $.trim(values[x]);
+
+            // If a blank (i.e. all whitespace value) made it into here before
+            // the fix was put in, make sure it's visible
+            if (value.length === 0) {
+                value = ' ';
+            }
+
+            addToList(value, obj, false, o, false );
         }
         if ( o.onAutoPopulateList ) {
             o.onAutoPopulateList( obj );
         }
     }
 
-    addToList = function ( text, obj, add_to_input, o ) {
+    addToList = function ( text, obj, add_to_input, o, trim ) {
         var ul = obj.find( 'ul' );
+
+        // Ignore preceding/trailing whitespace (or the whole thing if omly
+        // spaces have been entered)
+        if (trim !== false) {
+            text = $.trim(text);
+        }
+
         if ( text.length === 0 ){ return; }
         if ( ul.children( '#_' + text.toLowerCase() ).length !== 0 ) {
             ul.find( 'input[type=text]' ).val( '' );
             return;
         }
         var choice = $( '<li>' )
-                        .addClass( 'choice' )
-                        .attr( 'id', '_' + text.toLowerCase() )
-                        .attr( 'title', 'Rename' )
-                        .append(
-                            $( '<span>' ).text( text )
-                        )
-                        .append(
-                            $( '<i>' )
-                                .text('')
-                                .attr('title', 'Remove')
-                                .bind( 'click', function ( e ) {
-                                    removeItem( $( this ).parents( 'li' ), obj, o );
-                                } )
-                        );
+            .addClass( 'choice' )
+            .attr( 'id', '_' + text.toLowerCase() )
+            .append(
+            $( '<span>' ).text( text )
+        )
+            .append(
+            $( '<i>' ).bind( 'click', function ( e ) {
+                removeItem( $( this ).parents( 'li' ), obj, o );
+            } )
+        );
 
         // Add click handler.
         choice.on('click', function() {
-            renameItem(this);
+            renameItem(this, obj);
         });
 
         choice.insertBefore( ul.children().last() );
-        ul.find('input').val('').css( 'width', 26 );
+        ul.find( 'input').val('').css( 'width', 26 );
         if ( add_to_input === true ) {
             addToInput( text, obj, o );
         }
     }
 
-    renameItem = function(element) {
+    renameItem = function(element, obj) {
         var name = $(element).find('span');
-        var newName = window.prompt('Rename this option:', name.text());
+        var currentName = name.text();
+        var newName = window.prompt('Rename this option:', currentName);
 
-        if (newName && newName.length > 0) {
+        if (newName && newName.length > 0 && $.trim(newName).length > 0) {
             $(name).text(newName);
             $(element).attr('id', '_' + newName);
+
+            var input = obj.find('input[type="hidden"]');
+            var currentValue = input.val();
+            var newValue = currentValue.replace(currentName, newName);
+            input.val(newValue);
         }
     }
 
@@ -199,9 +231,9 @@
         return this.each( function () {
             if ( !$.data( this, 'plugin_' + pluginName ) ) {
                 $.data( this, 'plugin_' + pluginName,
-                new Plugin( this, options ) );
+                    new Plugin( this, options ) );
             }
         });
     }
-  
+
 })( jQuery, window, document );
